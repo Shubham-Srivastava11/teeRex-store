@@ -1,0 +1,31 @@
+.hidden {
+  display: none;
+}
+
+.view {
+  display: flex;
+}
+
+.searchBox {
+  margin: 2% 20%;
+  border: none;
+  border-bottom: 1px solid;
+  width: 50%;
+  font-size: 16px;
+  padding: 7px;
+}
+
+.filterBtn {
+  border: none;
+  padding: 7px 20px;
+  border-radius: 1rem;
+  display: none;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 945px) {
+  .filterBtn {
+    display: inline-flex;
+
+  }
+}

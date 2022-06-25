@@ -1,0 +1,20 @@
+.card_container {
+    /* display: flex; */
+    margin: 0% 5%;
+    /* width: 500px; */
+    /* float: right; */
+    /* border: 3px solid black; */
+    box-shadow: 0px 0px 2px 3px rgba(0, 0, 0, 0.19);
+}
+
+.innerCard {
+    padding: 1rem;
+}
+
+.innerCard h3 {
+    margin-left: 1rem;
+}
+
+.innerCard ul li {
+    list-style: none;
+}
