@@ -1,29 +1,48 @@
 import Filters from '../Filters/Filters';
 import style from './FilterCard.module.css';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 const FilterCard = (props) => {
     const [selectedFilter, setSelectedFilter] = useState([]);
 
-    const setFilters = (data) => {
-
-        setSelectedFilter(selectedFilter.length > 0 ? [...selectedFilter, data] : [data]);
+    useEffect(() => {
         props.filter(selectedFilter);
+    }, [selectedFilter])
+    const setFilters = (data) => {
+        if (selectedFilter.includes(data)) {
+            const i = selectedFilter.indexOf(data);
+            selectedFilter.splice(i, 1);
+            // console.log(selectedFilter);
+            if (selectedFilter.length === 0) {
+                props.filter([]);
+            } else {
+                setSelectedFilter(selectedFilter);
+                props.filter(selectedFilter);
+            }
+
+        } else {
+            setSelectedFilter(selectedFilter.length > 0 ? [...selectedFilter, data] : [data]);
+        }
+        // props.filter(selectedFilter);
     }
 
     const filters = [{
+        id: 'color',
         key: 'Colour',
         value: ['Red', 'Blue', 'Green']
     },
     {
+        id: 'gender',
         key: 'Gender',
         value: ['Male', 'Female']
     },
     {
+        id: 'price',
         key: 'Price(INR)',
         value: ['0 - 250', '251 - 450', '450']
     },
     {
+        id: 'type',
         key: 'Type',
         value: ['Polo', 'Hoodie', 'Basic']
     }]

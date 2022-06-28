@@ -90,7 +90,13 @@
 }
 
 .footer button label {
-    font-size: 13px;
+    /* font-size: 0.85rem; */
     margin-inline: 5px;
     cursor: pointer;
+}
+
+.minus,
+.plus {
+    font-size: 0.85rem;
+    font-weight: bold;
 }

@@ -1,6 +1,6 @@
 import ProductCard from '../../UI/ProductCard/ProductCard';
-import style from './ProductPage.module.css';
-import { useState } from 'react';
+import './ProductPage.css';
+import { useState, useEffect } from 'react';
 import FilterCard from '../../UI/FilterCard/FilterCard';
 
 const ProductPage = (props) => {
@@ -8,57 +8,36 @@ const ProductPage = (props) => {
     const [filterItems, setFilterItems] = useState([]);
     // console.log(props.isFilterBtn);
 
+    useEffect(() => {
+        props.filterChecked(filterItems);
+    }, [filterItems])
+    useEffect(() => {
+        const temp = Array.from(new Set(cartItems));
+        // console.log(temp);
+        props.sendCartItems(temp);
+    }, [cartItems])
     const productPageFilter = (data) => {
 
         setFilterItems(data);
-        props.filterChecked(filterItems);
+        // props.filterChecked(filterItems);
     }
     const addItem = (item) => {
 
         // console.log(item);
         setCartItems([...cartItems, item]);
-        const temp = Array.from(new Set(cartItems));
-        console.log(temp);
-        props.sendCartItems(temp);
-        // console.log(item);
-        // if (cartItems.length === 0)
-        //     setCartItems([item]);
-        // else {
-        //     var flag = 0;
-        //     const localItems = [...cartItems];
-        //     for (let value of localItems) {
-        //         var count = value.count;
-        //         if (value.id === item.id) {
-        //             count++;
-        //             // value.count;
-        //             const index = localItems.indexOf(value);
-        //             localItems[index].count = count;
-
-
-        //             console.log(localItems);
-        //             flag = 1;
-
-        //             break;
-
-        //         }
-        //     } setCartItems(localItems);
-        //     // setCartItems(cartItems);
-        //     if (flag !== 1)
-        //         setCartItems([...cartItems, item]);
-        // }
-
     }
 
     // props.sendCartItems(cartItems);
     return (
         <div style={{ display: 'flex' }} >
-            <div className={`${style.card_container_left} {${props.isFilterBtn && style.show}}`} >
+            <div className={`card_container_left ${props.isFilterBtn && 'show'}`} >
+                {/* {`lightbox ${hideLightbox ? "hide-lightbox" : ""}`} */}
                 <FilterCard
                     filter={productPageFilter}
                 />
             </div>
             <div
-                className={style.card_container_right}>
+                className='card_container_right'>
                 {
                     props.products.map(data =>
                         <ProductCard

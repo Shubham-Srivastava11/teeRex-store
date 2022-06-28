@@ -52,7 +52,9 @@ function App() {
    HANDLE CART DATA
  */
   const cartDataHandler = (data) => {
-    setCart(data)
+
+    setCart(data);
+
   }
 
   /*
@@ -80,9 +82,39 @@ function App() {
   /*
     CHECKBOX FILTER HANDLER
   */
+  useEffect(() => {
+    // console.log(checkboxFilter);
+    if (checkboxFilter.length === 0) {
+      setFilteredProductDetails(productDetails);
+    } else {
+      for (let filter of checkboxFilter) {
+        const key = filter.split(':')[0];
+        const val = filter.split(':')[1];
+        if (key === 'price') {
+          if (val.includes('-')) {
+            const filteredData = filteredProductDetails?.filter(item => (
+              item[key] >= val.split('-')[0] && item[key] <= val.split('-')[1]
+            ));
+            setFilteredProductDetails(filteredData);
+          } else {
+            const filteredData = filteredProductDetails?.filter(item => (
+              item[key] >= val
+            ));
+            setFilteredProductDetails(filteredData);
+          }
+        } else {
+          const filteredData = filteredProductDetails?.filter(item => (
+            item[key].includes(val)
+          ));
+          setFilteredProductDetails(filteredData);
+        }
+      }
+    }
+  }, [checkboxFilter]);
+
   const checkboxHandler = (data) => {
     setCheckboxFilter(data);
-    console.log(checkboxFilter);
+    // console.log(checkboxFilter);
   }
 
 
@@ -90,6 +122,7 @@ function App() {
     <div className="App">
       <Navbar
         urlHandler={currentUrlHandler}
+        cartCount={cart.length}
       />
 
       <div

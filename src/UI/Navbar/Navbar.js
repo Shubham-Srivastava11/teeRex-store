@@ -1,7 +1,8 @@
 import style from './Navbar.module.css';
+import { BsCart2 } from "react-icons/bs";
 
 const Navbar = (props) => {
-
+    console.log(props.cartCount);
     const pageHandler = (event) => {
         if (event.target.textContent === 'Products')
             props.urlHandler('products');
@@ -15,7 +16,9 @@ const Navbar = (props) => {
 
             <div className={style.navigation}>
                 <a onClick={pageHandler}>Products</a>
-                <a onClick={pageHandler}>Cart</a>
+                <a onClick={pageHandler}>
+                    <BsCart2 className={style.cartIcon}></BsCart2>
+                </a>
             </div>
         </nav>
     );

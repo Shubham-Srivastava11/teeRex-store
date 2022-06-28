@@ -9,8 +9,9 @@ const CartCard = (props) => {
     }
     return (
         <div className={style.card_container}>
-            {
+            {props.products.length > 0 ?
                 props.products.map(data =>
+                    data.count > 0 &&
                     <div
                         className={style.card_column}
                         key={data.id}>
@@ -44,7 +45,10 @@ const CartCard = (props) => {
                         </div>
 
                     </div>
+
                 )
+                :
+                <div className={style.noData}>Nothing added to Cart</div>
             }
         </div>
     );
