@@ -18,7 +18,7 @@ function App() {
   const [cart, setCart] = useState([]);
   const [isFilterBtn, setIsFilterBtn] = useState(false);
   const [checkboxFilter, setCheckboxFilter] = useState([]);
-
+  const [totalCartCount, setTotalCartCount] = useState(0);
   /*
     FETCH DATA FROM API
   */
@@ -54,6 +54,11 @@ function App() {
   const cartDataHandler = (data) => {
 
     setCart(data);
+
+  }
+  const cartCountHandler = (count) => {
+    console.log(count);
+    setTotalCartCount(count);
 
   }
 
@@ -122,7 +127,7 @@ function App() {
     <div className="App">
       <Navbar
         urlHandler={currentUrlHandler}
-        cartCount={cart.length}
+        cartCount={totalCartCount}
       />
 
       <div
@@ -151,8 +156,10 @@ function App() {
         className={currentUrl === 'cart' ? '' : 'hidden'} >
         <CartCard
           products={cart}
-          ogProducts={productDetails} />
+          ogProducts={productDetails}
+          cartCount={cartCountHandler} />
       </div>
+
 
     </div >
   );

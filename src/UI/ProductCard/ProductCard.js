@@ -8,7 +8,7 @@ const ProductCard = (props) => {
     // const [eachCount, setEachCount] = useState({});
 
     useEffect(() => {
-        if (props.item.count >= 1) {
+        if (props.item.count > 0) {
             props.addToCart(props.item);
         }
     }, [countAddedItem]);
@@ -21,25 +21,16 @@ const ProductCard = (props) => {
             else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
-                // props.addToCart(props.item);
             }
         } else if (event.target.textContent.includes('-')) {
-            console.log(countAddedItem);
-            // if (countAddedItem - 2 !== 0) {
+
             setCountAddedItem(countAddedItem - 1);
             props.item['count'] = countAddedItem - 1;
-            // props.addToCart(props.item);
-            // }
-            // props.addToCart(props.item);
+
         } else {
             setCountAddedItem(countAddedItem + 1);
             props.item['count'] = countAddedItem + 1;
-            // props.addToCart(props.item);
         }
-
-        // props.item['count'] = countAddedItem + 1;
-        // props.addToCart(props.item);
-
     }
     // console.log(cartItems);
     return (

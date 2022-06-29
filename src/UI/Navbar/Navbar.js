@@ -18,7 +18,9 @@ const Navbar = (props) => {
                 <a onClick={pageHandler}>Products</a>
                 <a onClick={pageHandler}>
                     <BsCart2 className={style.cartIcon}></BsCart2>
+                    <p className={style.cartCount}>{props.cartCount}</p>
                 </a>
+                {/* <p className={style.cartCount}>{props.cartCount}</p> */}
             </div>
         </nav>
     );

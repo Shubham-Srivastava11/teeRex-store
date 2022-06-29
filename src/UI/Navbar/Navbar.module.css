@@ -23,3 +23,10 @@
 .cartIcon {
     font-size: 1.2rem;
 }
+
+.cartCount {
+    float: right;
+    margin-left: -2rem;
+    margin-top: -0.5rem;
+    font-size: 13px;
+}
