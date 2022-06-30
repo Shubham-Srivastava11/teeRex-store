@@ -2,7 +2,7 @@ import style from './Navbar.module.css';
 import { BsCart2 } from "react-icons/bs";
 
 const Navbar = (props) => {
-    console.log(props.cartCount);
+    // console.log(props.cartCount);
     const pageHandler = (event) => {
         if (event.target.textContent === 'Products')
             props.urlHandler('products');

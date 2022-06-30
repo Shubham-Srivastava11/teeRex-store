@@ -19,9 +19,9 @@ function App() {
   const [isFilterBtn, setIsFilterBtn] = useState(false);
   const [checkboxFilter, setCheckboxFilter] = useState([]);
   const [totalCartCount, setTotalCartCount] = useState(0);
-  /*
+  /*--------------------------------------
     FETCH DATA FROM API
-  */
+  --------------------------------------*/
   useEffect(() => {
     fetchData()
   }, [])
@@ -41,30 +41,47 @@ function App() {
       .catch((error) => setError(error.message));
 
   }
-  /*
+  /*--------------------------------------
      HANDLE PRODUCT AND CART TABS
-   */
+   --------------------------------------*/
   const currentUrlHandler = (url) => {
     setCurrentUrl(url);
   }
 
-  /*
+  /*--------------------------------------
    HANDLE CART DATA
- */
+ --------------------------------------*/
   const cartDataHandler = (data) => {
 
     setCart(data);
 
   }
   const cartCountHandler = (count) => {
-    console.log(count);
+    // console.log(count);
     setTotalCartCount(count);
 
   }
 
-  /*
+  const editedCartItemHandler = (items) => {
+    // const finalEdited = items.filter((data)=>{
+    //   data.count===0
+    // });
+    var countCart = 0;
+    const tempArray = [...filteredProductDetails];
+    for (let i of items) {
+      countCart += i.count;
+      const index = tempArray.indexOf(i);
+      // filteredProductDetails[index] = i;
+      tempArray.splice(index, 1, i);
+      // console.log(tempArray);
+    }
+    setFilteredProductDetails(tempArray);
+    setTotalCartCount(countCart);
+
+  }
+  /*--------------------------------------
    RESPONSIVE FILTER BUTTON
- */
+ --------------------------------------*/
   const filterCardHandler = () => {
     if (isFilterBtn)
       setIsFilterBtn(false);
@@ -72,9 +89,9 @@ function App() {
       setIsFilterBtn(true);
   }
 
-  /*
+  /*--------------------------------------
    SEARCH FILTER HANDLER
- */
+ --------------------------------------*/
   const searchFilterHandler = (event) => {
     const filter = productDetails.filter(item => (
       item.color.toLowerCase().includes(event.target.value.toLowerCase()) ||
@@ -84,9 +101,9 @@ function App() {
     ));
     setFilteredProductDetails(filter);
   }
-  /*
+  /*--------------------------------------
     CHECKBOX FILTER HANDLER
-  */
+  --------------------------------------*/
   useEffect(() => {
     // console.log(checkboxFilter);
     if (checkboxFilter.length === 0) {
@@ -157,7 +174,8 @@ function App() {
         <CartCard
           products={cart}
           ogProducts={productDetails}
-          cartCount={cartCountHandler} />
+          cartCount={cartCountHandler}
+          sendEditedCartItems={editedCartItemHandler} />
       </div>
 
 

@@ -16,6 +16,7 @@ const Filters = (props) => {
             <h3>{props.data.key}</h3>
             <ul>
                 {props.data.value.map((type) =>
+
                     <li>
                         <input
                             type='checkbox'
@@ -24,6 +25,7 @@ const Filters = (props) => {
                         </input>
                         <label> {type} </label>
                     </li>
+
                 )}
             </ul>
         </React.Fragment>

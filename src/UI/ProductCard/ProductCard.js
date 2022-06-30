@@ -2,10 +2,16 @@ import React, { useEffect, useState } from 'react';
 import style from './ProductCard.module.css';
 
 const ProductCard = (props) => {
-    // console.log(props.products);
 
-    const [countAddedItem, setCountAddedItem] = useState(0);
+    // console.log(props.item);
+    const [countAddedItem, setCountAddedItem] = useState(props.staticCount);
     // const [eachCount, setEachCount] = useState({});
+    // useEffect(() => {
+    //     if ('count' in props.item) {
+    //         setCountAddedItem(props.item.count);
+    //     }
+
+    // }, [props.item]);
 
     useEffect(() => {
         if (props.item.count > 0) {
@@ -15,6 +21,8 @@ const ProductCard = (props) => {
 
     const sendCartData = (event) => {
         // console.log(event.target.textContent);
+
+
         if (event.target.textContent.includes('+')) {
             if (countAddedItem === props.item.quantity)
                 alert('Product out of stock');

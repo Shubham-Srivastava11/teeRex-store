@@ -5,7 +5,8 @@ import style from './CartCard.module.css';
 const CartCard = (props) => {
 
     const [cartItemCount, setCartItemCount] = useState();
-    const [itemsInCart, setItemsInCart] = useState(props.products);
+    const [cartEditList, setCartEditList] = useState([...props.products]);
+
     useEffect(() => {
         var count = 0;
         for (let val of props.products) {
@@ -15,27 +16,15 @@ const CartCard = (props) => {
         props.cartCount(count);
     }, [props.products])
 
-    const cartCount = (event) => {
-        if (event.target.textContent.includes('+')) {
-            console.log(event.target);
-        }
-        // if (event.target.textContent.includes('+')) {
-        //     if (countAddedItem === props.item.quantity)
-        //         alert('Product out of stock');
-        //     else {
-        //         setCountAddedItem(countAddedItem + 1);
-        //         props.item['count'] = countAddedItem + 1;
-        //     }
-        // } else if (event.target.textContent.includes('-')) {
 
-        //     setCountAddedItem(countAddedItem - 1);
-        //     props.item['count'] = countAddedItem - 1;
+    useEffect(() => {
+        const temp = Array.from(new Set(cartEditList));
+        // console.log(temp);
+        props.sendEditedCartItems(temp);
+    }, [cartEditList])
 
-        // } else {
-        //     setCountAddedItem(countAddedItem + 1);
-        //     props.item['count'] = countAddedItem + 1;
-        // }
-
+    const setEditedFunc = (item) => {
+        setCartEditList([...cartEditList, item]);
     }
     return (
         <div className={style.card_container}>
@@ -44,7 +33,11 @@ const CartCard = (props) => {
                     data.count > 0 &&
 
                     <EachCartCard
-                        item={data}>
+                        item={data}
+                        total={cartItemCount}
+                        // edit={editCartHandler}
+                        setEdited={setEditedFunc}
+                    >
 
                     </EachCartCard>
                     // <div

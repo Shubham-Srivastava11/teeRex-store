@@ -43,7 +43,8 @@ const ProductPage = (props) => {
                         <ProductCard
                             key={data.id}
                             item={data}
-                            addToCart={addItem} />
+                            addToCart={addItem}
+                            staticCount={'count' in data ? data.count : 0} />
                     )
                 }
             </div>
