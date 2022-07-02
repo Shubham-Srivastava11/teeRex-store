@@ -72,7 +72,14 @@
     }
 
     .footer button {
+        width: 90px;
         margin: 4rem;
+        padding: 1rem 2rem;
+    }
+
+    .footer button label {
+        margin-inline: 0px;
+        cursor: pointer;
     }
 }
 
@@ -108,4 +115,33 @@
 .plus {
     font-size: 0.85rem;
     font-weight: bold;
+}
+
+@media screen and (max-width: 470px) {
+    .card_column {
+        width: 400px;
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    .card {
+        background-size: contain;
+        width: 17%;
+        margin-right: 0rem;
+    }
+
+    .card_container {
+        margin-right: 0;
+    }
+
+    .card_column h4 {
+        margin: 0.5rem;
+        margin-top: 4rem;
+    }
+
+    .footer button {
+        margin: 2rem 4rem;
+        padding: 5px 30px;
+    }
+
 }

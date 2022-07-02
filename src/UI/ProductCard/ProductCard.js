@@ -8,7 +8,7 @@ const ProductCard = (props) => {
     const [isCount, setCount] = useState(props.staticCount);
 
     useEffect(() => {
-        if (props.item.count > 0) {
+        if (props.item.count >= 0) {
             props.addToCart(props.item);
         }
 
