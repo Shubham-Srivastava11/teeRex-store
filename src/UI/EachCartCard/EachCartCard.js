@@ -23,11 +23,15 @@ const EachCartCard = (props) => {
         } else if (event.target.textContent.includes('-')) {
             setEachCartCount(eachCartCount - 1);
             props.item.count = eachCartCount - 1;
-
         }
     }
+
+    const deleteProduct = () => {
+        setEachCartCount(0);
+        props.item.count = 0;
+    }
     return (
-        <React.Fragment>
+        <React.Fragment >
             {eachCartCount > 0 &&
                 <div
                     className={style.card_column}
@@ -49,7 +53,8 @@ const EachCartCard = (props) => {
                         className={style.btns} >
                         <button
                             className={style.del}
-                            type='button'>
+                            type='button'
+                            onClick={deleteProduct}>
                             Delete
                         </button>
                         <button

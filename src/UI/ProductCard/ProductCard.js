@@ -1,31 +1,25 @@
+import { render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
 import style from './ProductCard.module.css';
 
 const ProductCard = (props) => {
 
-    // console.log(props.item);
-    const [countAddedItem, setCountAddedItem] = useState(props.staticCount);
-    // const [eachCount, setEachCount] = useState({});
-    // useEffect(() => {
-    //     if ('count' in props.item) {
-    //         setCountAddedItem(props.item.count);
-    //     }
-
-    // }, [props.item]);
+    const [countAddedItem, setCountAddedItem] = useState(0);
+    const [isCount, setCount] = useState(props.staticCount);
 
     useEffect(() => {
         if (props.item.count > 0) {
             props.addToCart(props.item);
         }
+
     }, [countAddedItem]);
 
     const sendCartData = (event) => {
-        // console.log(event.target.textContent);
-
-
         if (event.target.textContent.includes('+')) {
-            if (countAddedItem === props.item.quantity)
+            if (props.item.quantity === countAddedItem) {
+
                 alert('Product out of stock');
+            }
             else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
@@ -36,11 +30,16 @@ const ProductCard = (props) => {
             props.item['count'] = countAddedItem - 1;
 
         } else {
-            setCountAddedItem(countAddedItem + 1);
-            props.item['count'] = countAddedItem + 1;
+            if (props.item.quantity === 0) {
+                props.item['count'] = 0;
+                alert('Product out of stock');
+            } else {
+                setCountAddedItem(countAddedItem + 1);
+                props.item['count'] = countAddedItem + 1;
+            }
         }
     }
-    // console.log(cartItems);
+    // console.log(props.item);
     return (
         <React.Fragment >
             <div className={style.card_column}>
@@ -57,11 +56,6 @@ const ProductCard = (props) => {
                 </h4>
                 <div
                     className={style.footer} >
-
-                    {/* <button
-                        type='button'
-                        onClick={sendCartData}
-                    > */}
                     {countAddedItem > 0 ?
                         <button
                             type='button'>
@@ -81,16 +75,7 @@ const ProductCard = (props) => {
                             onClick={sendCartData}
                         >Add to cart</button>}
 
-                    {/* </button> */}
-
-
                 </div>
-                {/* <h4>
-                    {props.item.name}
-                </h4>
-                <h4>
-                    {props.item.currency} {props.item.price}
-                </h4> */}
             </div>
         </React.Fragment>
     );

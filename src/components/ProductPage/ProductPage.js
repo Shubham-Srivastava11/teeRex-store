@@ -29,7 +29,7 @@ const ProductPage = (props) => {
 
     // props.sendCartItems(cartItems);
     return (
-        <div style={{ display: 'flex' }} >
+        <div style={{ display: 'flex', marginTop: '-7rem' }} >
             <div className={`card_container_left ${props.isFilterBtn && 'show'}`} >
                 {/* {`lightbox ${hideLightbox ? "hide-lightbox" : ""}`} */}
                 <FilterCard
@@ -44,7 +44,8 @@ const ProductPage = (props) => {
                             key={data.id}
                             item={data}
                             addToCart={addItem}
-                            staticCount={'count' in data ? data.count : 0} />
+                            staticCount={'count' in data ? true : false}
+                        />
                     )
                 }
             </div>

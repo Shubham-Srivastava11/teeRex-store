@@ -1,8 +1,11 @@
 .navbar {
     height: 1.5rem;
-    background-color: rgba(0, 0, 0, 0.284);
+    background-color: rgb(189, 187, 187);
     padding: 1.5rem;
+    /* position: fixed; */
     width: auto;
+    /* box-shadow: 2px 4px rgba(0, 0, 0, 0.201); */
+    overflow: hidden;
 }
 
 .navbar label {
@@ -11,7 +14,7 @@
 
 .navigation {
     float: right;
-
+    margin-right: 4rem;
 }
 
 .navigation a {
@@ -22,6 +25,8 @@
 
 .cartIcon {
     font-size: 1.2rem;
+    /* margin-right: 2rem; */
+    padding: 5px;
 }
 
 .cartCount {
@@ -29,4 +34,15 @@
     margin-left: -2rem;
     margin-top: -0.5rem;
     font-size: 13px;
+}
+
+.navBack {
+    background-color: rgba(128, 128, 128, 0.468);
+    box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.462);
+    /* padding: 2px; */
+
+}
+
+.hidden {
+    display: none;
 }

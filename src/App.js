@@ -175,7 +175,9 @@ function App() {
           products={cart}
           ogProducts={productDetails}
           cartCount={cartCountHandler}
-          sendEditedCartItems={editedCartItemHandler} />
+          sendEditedCartItems={editedCartItemHandler}
+          className='cartStyle'
+        />
       </div>
 
 

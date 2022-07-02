@@ -17,8 +17,8 @@ const Navbar = (props) => {
             <div className={style.navigation}>
                 <a onClick={pageHandler}>Products</a>
                 <a onClick={pageHandler}>
-                    <BsCart2 className={style.cartIcon}></BsCart2>
-                    <p className={style.cartCount}>{props.cartCount}</p>
+                    <BsCart2 className={`${style.cartIcon} ${props.cartCount > 0 ? style.navBack : ''}`}></BsCart2>
+                    <p className={`${props.cartCount > 0 ? style.cartCount : style.hidden} `}>{props.cartCount}</p>
                 </a>
                 {/* <p className={style.cartCount}>{props.cartCount}</p> */}
             </div>

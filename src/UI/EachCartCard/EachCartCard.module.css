@@ -1,6 +1,6 @@
 .card_container {
     /* display: grid; */
-    margin: 0% 5%;
+    /* margin: 0% 5%; */
     width: 600px;
     /* float: right; */
 
@@ -8,11 +8,12 @@
 }
 
 
+
 .card_column {
     float: left;
     width: 550px;
-    padding: 0 10px;
-    margin: 2% 1%;
+    padding: 10px;
+    margin: 1rem 1%;
     border: 1px solid black;
     border-radius: 1rem;
     padding: .5rem;

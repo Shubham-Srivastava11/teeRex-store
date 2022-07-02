@@ -1,12 +1,12 @@
 .card_container {
     /* display: grid; */
-    margin: 0% 5%;
+    /* display: flexbox; */
+    margin: 0rem 5%;
     width: 600px;
     /* float: right; */
 
 
 }
-
 
 .card_column {
     float: left;
@@ -112,8 +112,12 @@
 }
 
 .noData {
-    margin-left: 70%;
-    margin-top: 2rem;
-    font-size: 2rem;
+    text-align: center;
     color: brown;
+    margin-top: 5rem;
+    font-size: 3rem;
+}
+
+.eachCart {
+    display: flex;
 }
