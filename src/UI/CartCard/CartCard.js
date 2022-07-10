@@ -6,6 +6,7 @@ const CartCard = (props) => {
 
     const [cartItemCount, setCartItemCount] = useState();
     const [cartEditList, setCartEditList] = useState([...props.products]);
+    const [totalPrice, setTotalPrice] = useState([]);
 
     useEffect(() => {
         var count = 0;
@@ -19,34 +20,42 @@ const CartCard = (props) => {
 
     useEffect(() => {
         const temp = Array.from(new Set(cartEditList));
-        // console.log(temp);
         props.sendEditedCartItems(temp);
+
     }, [cartEditList])
 
     const setEditedFunc = (item) => {
         setCartEditList([...cartEditList, item]);
+        var sum = 0;
+        for (let val of props.products) {
+            sum += val.price * val.count;
+        }
+        setTotalPrice(sum);
     }
     if (props.products.length > 0) {
         return (
-            <div className={style.card_container}>
-                {
-                    // props.products.length > 0 ?
-                    props.products.map(data =>
-                        data.count > 0 &&
+            <div>
+                <label className={style.totalPrice}> Checkout Price : {totalPrice}</label>
+                <div className={style.card_container}>
+                    {
+                        props.products.map(data =>
+                            data.count > 0 &&
 
-                        <EachCartCard
-                            // key={Math.random()}
-                            item={data}
-                            total={cartItemCount}
-                            className={style.eachCart}
-                            setEdited={setEditedFunc}
-                        >
-                        </EachCartCard>
-                    )
-                    //     :
-                    //     <div className={style.noData}>Nothing added to Cart</div>
-                }
+                            <EachCartCard
+
+                                item={data}
+                                total={cartItemCount}
+                                className={style.eachCart}
+                                setEdited={setEditedFunc}
+                            >
+                            </EachCartCard>
+                        )
+                    }
+
+                </div>
+
             </div>
+
         );
     } else {
         return (

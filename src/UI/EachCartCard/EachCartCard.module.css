@@ -1,13 +1,6 @@
 .card_container {
-    /* display: grid; */
-    /* margin: 0% 5%; */
     width: 600px;
-    /* float: right; */
-
-
 }
-
-
 
 .card_column {
     float: left;
@@ -21,7 +14,6 @@
 }
 
 .card {
-    /* background-color: rgb(85, 164, 120); */
     background-size: cover;
     height: 5rem;
     width: 5rem;
@@ -30,17 +22,14 @@
     border-radius: 1rem;
     box-shadow: 5px 5px rgba(0, 0, 0, 0.114);
     margin-right: 2rem;
-
-
 }
 
 .card_column:hover {
+    /* border-radius: 0 0 300px 300px; */
 
-    /* background-color: rgb(48, 96, 70); */
-    background-color: rgba(0, 0, 0, 0.625);
-    color: white;
-    /* cursor: pointer; */
-    /* border: 1px solid black; */
+    box-shadow: 0 0 25px rgba(72, 109, 241, 0.544);
+    border-color: white;
+    /* color: white; */
 }
 
 .card h1 {
@@ -55,14 +44,36 @@
 
 @media screen and (max-width: 1090px) {
     .card_column {
-        width: 80%;
+        width: 550px;
         display: flex;
         margin-bottom: 20px;
     }
 
     .card {
         background-size: contain;
-        width: 17%;
+        width: 100px;
+        margin-right: 1rem;
+    }
+
+    .card_container {
+        margin-right: 0;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    /* .card_container {
+        width: 50%;
+    } */
+
+    .card_column {
+        width: 550px;
+        display: flex;
+
+    }
+
+    .card {
+        background-size: contain;
+        width: 100px;
         margin-right: 1rem;
     }
 
@@ -78,16 +89,12 @@
 
 .footer {
     background-color: transparent;
-    /* display: flex; */
     margin: 10px;
-    /* padding: 2rem; */
-
 }
 
 .del {
     border: none;
     padding: 5px 16px;
-
     background-color: brown;
     color: white;
     border-radius: 1rem;
@@ -109,7 +116,6 @@
 
 .qty label {
     margin: .5rem;
-    /* font-size: 1rem; */
 }
 
 .noData {

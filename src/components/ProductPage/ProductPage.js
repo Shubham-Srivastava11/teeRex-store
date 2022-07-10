@@ -6,32 +6,27 @@ import FilterCard from '../../UI/FilterCard/FilterCard';
 const ProductPage = (props) => {
     const [cartItems, setCartItems] = useState([]);
     const [filterItems, setFilterItems] = useState([]);
-    // console.log(props.isFilterBtn);
 
     useEffect(() => {
         props.filterChecked(filterItems);
-    }, [filterItems])
+        console.log(filterItems);
+    }, [filterItems]);
+
     useEffect(() => {
         const temp = Array.from(new Set(cartItems));
-        // console.log(temp);
         props.sendCartItems(temp);
     }, [cartItems])
     const productPageFilter = (data) => {
-
         setFilterItems(data);
-        // props.filterChecked(filterItems);
     }
     const addItem = (item) => {
 
-        // console.log(item);
         setCartItems([...cartItems, item]);
     }
 
-    // props.sendCartItems(cartItems);
     return (
         <div style={{ display: 'flex', marginTop: '-7rem' }} >
             <div className={`card_container_left ${props.isFilterBtn && 'show'}`} >
-                {/* {`lightbox ${hideLightbox ? "hide-lightbox" : ""}`} */}
                 <FilterCard
                     filter={productPageFilter}
                 />

@@ -1,11 +1,9 @@
-import logo from './logo.svg';
+import axios from 'axios';
 import './App.css';
 import Navbar from './UI/Navbar/Navbar';
 import { useState, useEffect } from 'react';
-import ProductCard from './UI/ProductCard/ProductCard';
 import CartCard from './UI/CartCard/CartCard';
 import ProductPage from './components/ProductPage/ProductPage';
-import FilterCard from './UI/FilterCard/FilterCard';
 import { BiFilterAlt } from "react-icons/bi";
 function App() {
 
@@ -27,16 +25,14 @@ function App() {
   }, [])
 
   const fetchData = () => {
-    fetch(URL)
+    axios.get(URL)
       .then((res) => {
-        if (res.ok) return res.json();
-        throw new Error('something went wrong while requesting posts');
+        if (res.statusText === 'OK') return res.data;
+        throw new Error('Something went wrong while requesting posts.');
       })
       .then((response) => {
-        // console.log(response);
         setProductDetails(response);
         setFilteredProductDetails(response);
-
       })
       .catch((error) => setError(error.message));
 
@@ -57,23 +53,17 @@ function App() {
 
   }
   const cartCountHandler = (count) => {
-    // console.log(count);
     setTotalCartCount(count);
 
   }
 
   const editedCartItemHandler = (items) => {
-    // const finalEdited = items.filter((data)=>{
-    //   data.count===0
-    // });
     var countCart = 0;
     const tempArray = [...filteredProductDetails];
     for (let i of items) {
       countCart += i.count;
       const index = tempArray.indexOf(i);
-      // filteredProductDetails[index] = i;
       tempArray.splice(index, 1, i);
-      // console.log(tempArray);
     }
     setFilteredProductDetails(tempArray);
     setTotalCartCount(countCart);
@@ -105,10 +95,10 @@ function App() {
     CHECKBOX FILTER HANDLER
   --------------------------------------*/
   useEffect(() => {
-    // console.log(checkboxFilter);
     if (checkboxFilter.length === 0) {
       setFilteredProductDetails(productDetails);
     } else {
+      console.log(checkboxFilter);
       for (let filter of checkboxFilter) {
         const key = filter.split(':')[0];
         const val = filter.split(':')[1];
@@ -136,10 +126,15 @@ function App() {
 
   const checkboxHandler = (data) => {
     setCheckboxFilter(data);
-    // console.log(checkboxFilter);
   }
 
-
+  if (error)
+    return (
+      <div>
+        <h1>Please check the API url.</h1>
+        {error}
+      </div>
+    )
   return (
     <div className="App">
       <Navbar
@@ -167,7 +162,6 @@ function App() {
           sendCartItems={cartDataHandler}
           isFilterBtn={isFilterBtn}
           filterChecked={checkboxHandler} />
-
       </div>
       <div
         className={currentUrl === 'cart' ? '' : 'hidden'} >
@@ -179,8 +173,6 @@ function App() {
           className='cartStyle'
         />
       </div>
-
-
     </div >
   );
 }

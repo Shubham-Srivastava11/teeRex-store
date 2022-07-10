@@ -3,11 +3,12 @@ import style from './EachCartCard.module.css';
 
 const EachCartCard = (props) => {
 
-    const [itemsInCart, setItemsInCart] = useState([]);
-    const [eachCartCount, setEachCartCount] = useState(props.item.count);
+
+    const [eachCartCount, setEachCartCount] = useState(props.item.count);//props.item.count
 
     useEffect(() => {
         props.setEdited(props.item);
+
     }, [eachCartCount]);
 
 
@@ -21,7 +22,8 @@ const EachCartCard = (props) => {
             }
 
         } else if (event.target.textContent.includes('-')) {
-            setEachCartCount(eachCartCount - 1);
+            // setEachCartCount(eachCartCount - 1);
+            setEachCartCount(props.item.count - 1);
             props.item.count = eachCartCount - 1;
         }
     }
@@ -47,6 +49,9 @@ const EachCartCard = (props) => {
                         </h4>
                         <h4>
                             {props.item.currency} {props.item.price}
+                        </h4>
+                        <h4>
+                            Total : {props.item.price * props.item.count}
                         </h4>
                     </div>
                     <div

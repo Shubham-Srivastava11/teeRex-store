@@ -1,8 +1,12 @@
 import { render } from '@testing-library/react';
 import React, { useEffect, useState } from 'react';
 import style from './ProductCard.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const ProductCard = (props) => {
+    const notify = (msg) => toast.success(msg, { position: toast.POSITION.BOTTOM_CENTER, autoClose: 800 });
 
     const [countAddedItem, setCountAddedItem] = useState(0);
     const [isCount, setCount] = useState(props.staticCount);
@@ -10,11 +14,13 @@ const ProductCard = (props) => {
     useEffect(() => {
         if (props.item.count >= 0) {
             props.addToCart(props.item);
+
         }
 
     }, [countAddedItem]);
 
     const sendCartData = (event) => {
+
         if (event.target.textContent.includes('+')) {
             if (props.item.quantity === countAddedItem) {
 
@@ -23,11 +29,13 @@ const ProductCard = (props) => {
             else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
+                notify(`1 ${props.item.name} ADDED to cart.`);
             }
         } else if (event.target.textContent.includes('-')) {
 
             setCountAddedItem(countAddedItem - 1);
             props.item['count'] = countAddedItem - 1;
+            notify(`1 ${props.item.name} REMOVED from cart.`);
 
         } else {
             if (props.item.quantity === 0) {
@@ -36,17 +44,17 @@ const ProductCard = (props) => {
             } else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
+                notify(`1 ${props.item.name} ADDED to cart.`);
             }
         }
     }
-    // console.log(props.item);
+
     return (
         <React.Fragment >
             <div className={style.card_column}>
                 < div
                     className={style.card}
                     style={{ backgroundImage: `url(${props.item.imageURL})` }} >
-                    {/* <img className={style.prodImage} src={data.imageURL} /> */}
                 </div >
                 <h4>
                     {props.item.name}
@@ -54,6 +62,7 @@ const ProductCard = (props) => {
                 <h4>
                     {props.item.currency} {props.item.price}
                 </h4>
+
                 <div
                     className={style.footer} >
                     {countAddedItem > 0 ?
@@ -73,8 +82,15 @@ const ProductCard = (props) => {
                         <button
                             type='button'
                             onClick={sendCartData}
-                        >Add to cart</button>}
-
+                            data-testid={`prodId${props.item.id}`}
+                        >Add to cart</button>
+                    }
+                    <label
+                        className={style.leftItem}
+                        data-testid={`quantId${props.item.id}`}>
+                        {props.item.quantity - countAddedItem} left.
+                    </label>
+                    <ToastContainer />
                 </div>
             </div>
         </React.Fragment>
