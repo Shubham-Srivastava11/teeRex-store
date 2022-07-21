@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 
 const ProductCard = (props) => {
-    const notify = (msg) => toast.success(msg, { position: toast.POSITION.BOTTOM_CENTER, autoClose: 800 });
+    const notify = (msg) => toast.success(msg, { position: toast.POSITION.BOTTOM_CENTER, autoClose: 500 });
 
     const [countAddedItem, setCountAddedItem] = useState(0);
     const [isCount, setCount] = useState(props.staticCount);
@@ -14,28 +14,24 @@ const ProductCard = (props) => {
     useEffect(() => {
         if (props.item.count >= 0) {
             props.addToCart(props.item);
-
         }
-
     }, [countAddedItem]);
 
     const sendCartData = (event) => {
-
         if (event.target.textContent.includes('+')) {
             if (props.item.quantity === countAddedItem) {
-
                 alert('Product out of stock');
             }
             else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
-                notify(`1 ${props.item.name} ADDED to cart.`);
+                // notify(`1 ${props.item.name} ADDED to cart.`);
             }
         } else if (event.target.textContent.includes('-')) {
 
             setCountAddedItem(countAddedItem - 1);
             props.item['count'] = countAddedItem - 1;
-            notify(`1 ${props.item.name} REMOVED from cart.`);
+            // notify(`1 ${props.item.name} REMOVED from cart.`);
 
         } else {
             if (props.item.quantity === 0) {
@@ -44,7 +40,7 @@ const ProductCard = (props) => {
             } else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
-                notify(`1 ${props.item.name} ADDED to cart.`);
+                // notify(`1 ${props.item.name} ADDED to cart.`);
             }
         }
     }
@@ -65,7 +61,7 @@ const ProductCard = (props) => {
 
                 <div
                     className={style.footer} >
-                    {countAddedItem > 0 ?
+                    {/* {countAddedItem > 0 ?
                         <button
                             type='button'>
                             <label onClick={sendCartData}
@@ -78,16 +74,17 @@ const ProductCard = (props) => {
                                 onClick={sendCartData}
                                 className={style.plus}> + </label>
                         </button>
-                        :
-                        <button
-                            type='button'
-                            onClick={sendCartData}
-                            data-testid={`prodId${props.item.id}`}
-                        >Add to cart</button>
-                    }
+                        : */}
+                    <button
+                        type='button'
+                        onClick={sendCartData}
+                    // data-testid={`prodId${props.item.id}`}
+                    >Add to cart</button>
+                    {/* } */}
                     <label
                         className={style.leftItem}
-                        data-testid={`quantId${props.item.id}`}>
+                    // data-testid={`quantId${props.item.id}`}
+                    >
                         {props.item.quantity - countAddedItem} left.
                     </label>
                     <ToastContainer />

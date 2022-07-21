@@ -18,7 +18,7 @@ const FilterCard = (props) => {
                 props.filter([]);
             } else {
                 setSelectedFilter(selectedFilter);
-                // props.filter(selectedFilter);
+                props.filter(selectedFilter);
             }
 
         } else {

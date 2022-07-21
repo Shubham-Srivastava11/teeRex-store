@@ -2,13 +2,16 @@ import React, { useState, useEffect } from 'react';
 import style from './EachCartCard.module.css';
 
 const EachCartCard = (props) => {
+    useEffect(() => {
+        setEachCartCount(props.item.count);
+        // console.log(eachCartCount);
+    }, [props]);
 
 
     const [eachCartCount, setEachCartCount] = useState(props.item.count);//props.item.count
 
     useEffect(() => {
         props.setEdited(props.item);
-
     }, [eachCartCount]);
 
 
@@ -17,14 +20,17 @@ const EachCartCard = (props) => {
             if (eachCartCount === props.item.quantity)
                 alert('Product out of stock');
             else {
-                setEachCartCount(eachCartCount + 1);
+                setEachCartCount(props.item.count + 1);
                 props.item.count = eachCartCount + 1;
+                console.log(eachCartCount);
+                console.log(props.item.count);
             }
 
         } else if (event.target.textContent.includes('-')) {
             // setEachCartCount(eachCartCount - 1);
             setEachCartCount(props.item.count - 1);
             props.item.count = eachCartCount - 1;
+
         }
     }
 
@@ -34,7 +40,8 @@ const EachCartCard = (props) => {
     }
     return (
         <React.Fragment >
-            {eachCartCount > 0 &&
+            {
+                eachCartCount > 0 &&
                 <div
                     className={style.card_column}
                     key={props.item.id}>

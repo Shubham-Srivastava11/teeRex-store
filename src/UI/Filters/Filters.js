@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './Filters.css';
 
 const Filters = (props) => {
     const filterData = (event) => {
@@ -13,7 +14,8 @@ const Filters = (props) => {
                         <input
                             type='checkbox'
                             value={type}
-                            onChange={filterData}>
+                            onChange={filterData}
+                            className='filterCheckbox'>
                         </input>
                         <label> {type} </label>
                     </li>

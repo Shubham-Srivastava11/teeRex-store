@@ -42,7 +42,6 @@ const CartCard = (props) => {
                             data.count > 0 &&
 
                             <EachCartCard
-
                                 item={data}
                                 total={cartItemCount}
                                 className={style.eachCart}

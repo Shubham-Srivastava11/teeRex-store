@@ -16,8 +16,10 @@ const ProductPage = (props) => {
         const temp = Array.from(new Set(cartItems));
         props.sendCartItems(temp);
     }, [cartItems])
+
     const productPageFilter = (data) => {
         setFilterItems(data);
+        props.filterChecked(filterItems);
     }
     const addItem = (item) => {
 
@@ -31,19 +33,26 @@ const ProductPage = (props) => {
                     filter={productPageFilter}
                 />
             </div>
-            <div
-                className='card_container_right'>
-                {
-                    props.products.map(data =>
-                        <ProductCard
-                            key={data.id}
-                            item={data}
-                            addToCart={addItem}
-                            staticCount={'count' in data ? true : false}
-                        />
-                    )
-                }
-            </div>
+            {props.products.length > 0 ?
+                <div
+                    className='card_container_right'>
+                    {
+                        props.products.map(data =>
+                            <ProductCard
+                                key={data.id}
+                                item={data}
+                                addToCart={addItem}
+                                staticCount={'count' in data ? true : false}
+                            />
+                        )
+                    }
+                </div>
+                :
+                <h1
+                    style={{ margin: '10rem 20rem' }}>
+                    No Products
+                </h1>
+            }
         </div>
     );
 }

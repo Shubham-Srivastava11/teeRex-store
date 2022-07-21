@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react';
 import CartCard from './UI/CartCard/CartCard';
 import ProductPage from './components/ProductPage/ProductPage';
 import { BiFilterAlt } from "react-icons/bi";
+import { render } from 'react-dom';
 function App() {
 
   let URL = 'https://geektrust.s3.ap-southeast-1.amazonaws.com/coding-problems/shopping-cart/catalogue.json';
@@ -95,6 +96,7 @@ function App() {
     CHECKBOX FILTER HANDLER
   --------------------------------------*/
   useEffect(() => {
+    console.log(checkboxFilter);
     if (checkboxFilter.length === 0) {
       setFilteredProductDetails(productDetails);
     } else {
@@ -125,7 +127,9 @@ function App() {
   }, [checkboxFilter]);
 
   const checkboxHandler = (data) => {
+
     setCheckboxFilter(data);
+    console.log(checkboxFilter);
   }
 
   if (error)
@@ -162,7 +166,9 @@ function App() {
           sendCartItems={cartDataHandler}
           isFilterBtn={isFilterBtn}
           filterChecked={checkboxHandler} />
+
       </div>
+
       <div
         className={currentUrl === 'cart' ? '' : 'hidden'} >
         <CartCard

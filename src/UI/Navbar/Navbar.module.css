@@ -1,9 +1,10 @@
 .navbar {
     height: 1.5rem;
-    background-color: rgb(189, 187, 187);
+    background-color: rgba(69, 90, 164, 0.544);
     padding: 1.5rem;
     width: 100%;
     overflow: hidden;
+    box-shadow: 0 0 20px rgba(72, 109, 241, 0.544);
 }
 
 .navbar label {
@@ -39,7 +40,7 @@
 
 .navBack {
     background-color: rgba(128, 128, 128, 0.468);
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.718);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.718);
 }
 
 .hidden {
