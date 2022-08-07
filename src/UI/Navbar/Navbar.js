@@ -13,9 +13,10 @@ const Navbar = (props) => {
             <label>TeeRex Store</label>
             <div className={style.navigation}>
                 <a onClick={pageHandler}>Products</a>
-                <a onClick={pageHandler}>
+                <a onClick={pageHandler}
+                    data-testid="cartIcon">
                     <BsCart2
-                        data-testid="cartIcon"
+
                         className={`${style.cartIcon} ${props.cartCount > 0 ? style.navBack : ''}`}>
                     </BsCart2>
                     <p

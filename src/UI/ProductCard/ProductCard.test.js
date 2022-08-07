@@ -3,13 +3,6 @@ import UserEvent from '@testing-library/user-event';
 import App from '../../App';
 
 afterEach(cleanup)
-// window.fetch = jest.fn(() => {
-//     const user = [{ id: '1', name: 'Jack', email: 'jack@email.com', role: 'admin' }];
-
-//     return Promise.resolve({
-//         json: () => Promise.resolve(user),
-//     });
-// });
 
 describe('Testing ProductCard component', () => {
 

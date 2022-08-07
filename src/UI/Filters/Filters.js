@@ -15,7 +15,8 @@ const Filters = (props) => {
                             type='checkbox'
                             value={type}
                             onChange={filterData}
-                            className='filterCheckbox'>
+                            className='filterCheckbox'
+                            data-testid={`filterId${type}`}>
                         </input>
                         <label> {type} </label>
                     </li>

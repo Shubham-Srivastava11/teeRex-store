@@ -82,6 +82,14 @@
     }
 }
 
+@media screen and (max-width: 450px) {
+    .card_column {
+        /* width: 400px; */
+        display: flex;
+
+    }
+}
+
 .prodImage {
     height: 5rem;
     width: 5rem;

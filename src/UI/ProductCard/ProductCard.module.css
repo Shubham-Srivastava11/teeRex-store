@@ -116,9 +116,10 @@
 
 @media screen and (max-width: 470px) {
     .card_column {
-        width: 400px;
+        width: 300px;
         display: flex;
         margin-bottom: 10px;
+        /* size: 1vw; */
     }
 
     .card {

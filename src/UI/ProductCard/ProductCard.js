@@ -18,20 +18,18 @@ const ProductCard = (props) => {
     }, [countAddedItem]);
 
     const sendCartData = (event) => {
-        if (event.target.textContent.includes('+')) {
+        if (event.target.textContent.includes('Add to cart')) {
             if (props.item.quantity === countAddedItem) {
                 alert('Product out of stock');
             }
             else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
-                // notify(`1 ${props.item.name} ADDED to cart.`);
             }
         } else if (event.target.textContent.includes('-')) {
 
             setCountAddedItem(countAddedItem - 1);
             props.item['count'] = countAddedItem - 1;
-            // notify(`1 ${props.item.name} REMOVED from cart.`);
 
         } else {
             if (props.item.quantity === 0) {
@@ -40,7 +38,6 @@ const ProductCard = (props) => {
             } else {
                 setCountAddedItem(countAddedItem + 1);
                 props.item['count'] = countAddedItem + 1;
-                // notify(`1 ${props.item.name} ADDED to cart.`);
             }
         }
     }
@@ -78,12 +75,12 @@ const ProductCard = (props) => {
                     <button
                         type='button'
                         onClick={sendCartData}
-                    // data-testid={`prodId${props.item.id}`}
+                        data-testid={`prodId${props.item.id}`}
                     >Add to cart</button>
                     {/* } */}
                     <label
                         className={style.leftItem}
-                    // data-testid={`quantId${props.item.id}`}
+                        data-testid={`quantId${props.item.id}`}
                     >
                         {props.item.quantity - countAddedItem} left.
                     </label>
